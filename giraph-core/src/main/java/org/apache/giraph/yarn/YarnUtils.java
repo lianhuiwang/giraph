@@ -196,6 +196,10 @@ public class YarnUtils {
     if (giraphConf.getBoolean(YarnConfiguration.IS_MINI_YARN_CLUSTER, false)) {
       classPathEnv.append(':').append(System.getenv("CLASSPATH"));
     }
+    for (String fileName : giraphConf.getYarnLibJars().split(",")) {
+      Path path = new Path(fileName);
+      classPathEnv.append(':').append("./" + path.getName());
+    }
     env.put("CLASSPATH", classPathEnv.toString());
   }
 

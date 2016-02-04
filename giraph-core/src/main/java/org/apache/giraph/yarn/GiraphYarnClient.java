@@ -468,6 +468,9 @@ public class GiraphYarnClient {
     String[] libJars = giraphConf.getYarnLibJars().split(",");
     for (String libJar : libJars) {
       jars.add(libJar);
+      Path dest = new Path(libJar);
+      FileSystem fs = dest.getFileSystem(new Configuration());
+      YarnUtils.addFileToResourceMap(map, fs, dest);
     }
     FileSystem fs = FileSystem.get(giraphConf);
     Path baseDir = YarnUtils.getFsCachePath(fs, appId);

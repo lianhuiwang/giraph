@@ -158,7 +158,7 @@ public class ZooKeeperManager {
     configFilePath = zkDir + "/zoo.cfg";
     zkBasePort = GiraphConstants.ZOOKEEPER_SERVER_PORT.get(conf);
 
-    myHostname = conf.getLocalHostname();
+    myHostname = conf.getLocalHostOrIp();
     fs = FileSystem.get(conf);
   }
 

@@ -409,8 +409,9 @@ end[PURE_YARN]*/
     // Now, we parse options that are specific to Hadoop MR Job
     if (cmd.hasOption("vif")) {
       if (cmd.hasOption("vip")) {
-        if (FileSystem.get(new Configuration()).listStatus(
-              new Path(cmd.getOptionValue("vip"))) == null) {
+        Path path = new Path(cmd.getOptionValue("vip"));
+        FileSystem fs = path.getFileSystem(new Configuration());
+        if (fs.listStatus(path) == null) {
           throw new IllegalArgumentException(
               "Invalid vertex input path (-vip): " +
               cmd.getOptionValue("vip"));

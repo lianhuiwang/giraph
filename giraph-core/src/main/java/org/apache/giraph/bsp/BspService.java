@@ -245,7 +245,7 @@ public abstract class BspService<I extends WritableComparable,
     this.restartedSuperstep = conf.getLong(
         GiraphConstants.RESTART_SUPERSTEP, UNSET_SUPERSTEP);
     try {
-      this.hostname = conf.getLocalHostname();
+      this.hostname = conf.getLocalHostOrIp();
     } catch (UnknownHostException e) {
       throw new RuntimeException(e);
     }
