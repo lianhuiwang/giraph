@@ -15,20 +15,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.giraph.block_app.framework.api.local;
-
-import org.apache.giraph.graph.Vertex;
-import org.apache.hadoop.io.Writable;
-import org.apache.hadoop.io.WritableComparable;
+package org.apache.giraph.worker;
 
 /**
- * Interface to use for saving vertices
+ * Interface providing utilities for using worker index.
  *
- * @param <I> Vertex id
- * @param <V> Vertex value
- * @param <E> Edge value
+ * @param <I> Vertex id type
  */
-public interface VertexSaver<I extends WritableComparable, V extends Writable,
-    E extends Writable> {
-  void saveVertex(Vertex<I, V, E> vertex);
+public interface WorkerIndexUsage<I> {
+  /**
+   * Get number of workers
+   *
+   * @return Number of workers
+   */
+  int getWorkerCount();
+
+  /**
+   * Get index for this worker
+   *
+   * @return Index of this worker
+   */
+  int getMyWorkerIndex();
+
+  /**
+   * Get worker index which will contain vertex with given id,
+   * if such vertex exists.
+   *
+   * @param vertexId vertex id
+   * @return worker index
+   */
+  int getWorkerForVertex(I vertexId);
 }

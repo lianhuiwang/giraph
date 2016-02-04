@@ -19,16 +19,20 @@ package org.apache.giraph.block_app.framework.api;
 
 import org.apache.giraph.worker.WorkerAggregatorUsage;
 import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.WritableComparable;
 
 /**
  * Block computation API available for worker send methods.
  *
  * Interface to the WorkerContext methods.
  *
+ * @param <I> vertex Id type.
  * @param <WM> Worker message type
  */
-public interface BlockWorkerContextSendApi<WM extends Writable>
-    extends BlockWorkerContextApi, WorkerAggregatorUsage {
+@SuppressWarnings("rawtypes")
+public interface BlockWorkerContextSendApi
+    <I extends WritableComparable, WM extends Writable>
+    extends BlockWorkerContextApi<I>, WorkerAggregatorUsage {
   /**
    * Send message to another worker
    *
