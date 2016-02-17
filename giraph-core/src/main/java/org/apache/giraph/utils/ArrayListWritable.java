@@ -49,6 +49,7 @@ public abstract class ArrayListWritable<M extends Writable> extends ArrayList<M>
    * readFields()
    */
   public ArrayListWritable() {
+    super();
   }
 
   /**

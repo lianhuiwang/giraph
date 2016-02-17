@@ -86,7 +86,7 @@ public abstract class TextVertexInputFormat<I extends WritableComparable,
    * need common exception handling while preprocessing, then extend
    * {@link TextVertexReaderFromEachLineProcessedHandlingExceptions}.
    */
-  protected abstract class TextVertexReader extends VertexReader<I, V, E> {
+  public abstract class TextVertexReader extends VertexReader<I, V, E> {
     /** Internal line record reader */
     private RecordReader<LongWritable, Text> lineRecordReader;
     /** Context passed to initialize */
@@ -217,7 +217,7 @@ public abstract class TextVertexInputFormat<I extends WritableComparable,
    * @param <T>
    *          The resulting type of preprocessing.
    */
-  protected abstract class TextVertexReaderFromEachLineProcessed<T> extends
+  public abstract class TextVertexReaderFromEachLineProcessed<T> extends
       TextVertexReader {
 
     @Override
